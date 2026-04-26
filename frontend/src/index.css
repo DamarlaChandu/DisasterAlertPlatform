@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #EF4444;
+  --secondary: #F97316;
+  --accent: #06B6D4;
+  
+  /* Role Specifics */
+  --citizen: #F97316;
+  --volunteer: #4F46E5;
+  --admin: #7C3AED;
+  
+  --dark: #1F2937;
+  --light: #F9FAFB;
+  --text-dark: #111827;
+  --text-light: #6B7280;
+  --border: #E5E7EB;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --danger: #EF4444;
+}
+
+html, body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-dark);
+  background: var(--light);
+  scroll-behavior: smooth;
+}
+
+body {
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+button {
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+input, textarea, select {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-light);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-dark);
+}
+
+/* Loading animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-red {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(239, 68, 68, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+
+/* Leaflet Map Styles */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.leaflet-popup-content {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.custom-disaster-marker,
+.custom-request-marker {
+  background: none !important;
+  border: none !important;
+}
+
+/* Premium Toast Styles */
+.Toastify__toast {
+  border-radius: 16px !important;
+  font-family: 'Poppins', sans-serif !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.Toastify__toast--info {
+  background: rgba(79, 70, 229, 0.9) !important; /* Indigo for volunteer */
+}
+
+.Toastify__toast--error {
+  background: rgba(239, 68, 68, 0.9) !important; /* Red for disaster */
+}
+
+.Toastify__toast--warning {
+  background: rgba(245, 158, 11, 0.9) !important; /* Amber for nearby */
+}
+
+.Toastify__toast--success {
+  background: rgba(16, 185, 129, 0.9) !important; /* Emerald for success */
+}
+
+.Toastify__toast-body {
+  font-weight: 500 !important;
+}
+
+.Toastify__progress-bar {
+  height: 4px !important;
+}
+
