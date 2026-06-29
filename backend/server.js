@@ -4,6 +4,8 @@ import cors from 'cors';
 import http from 'http';
 import { Server as SocketIOServer } from 'socket.io';
 import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 // Load environment variables
 dotenv.config();
@@ -25,6 +27,11 @@ import { initializeSocket } from './socket/socketHandler.js';
 
 // Initialize Express app
 const app = express();
+
+// Get __dirname equivalent in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const frontendDistPath = path.join(__dirname, '../frontend/dist');
 
 // Create HTTP server for Socket.io
 const server = http.createServer(app);
@@ -54,6 +61,9 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }));
 // Static files for uploads
 app.use('/uploads', express.static('uploads'));
 
+// Serve frontend static files
+app.use(express.static(frontendDistPath));
+
 // Initialize Socket.io
 initializeSocket(io);
 
@@ -80,6 +90,11 @@ app.get('/api/health', (req, res) => {
     message: 'Server is running',
     timestamp: new Date(),
   });
+});
+
+// SPA fallback - serve index.html for all non-API routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(frontendDistPath, 'index.html'));
 });
 
 // 404 handler
